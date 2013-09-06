@@ -1,8 +1,8 @@
 # Bundler tasks
 require 'bundler/capistrano'
 
-set :application, "massage_manager"
-set :repository,  "git@github.com:Agatov/massage_manager.git"
+set :application, "massage_girl"
+set :repository,  "git@github.com:Agatov/massage_giril.git"
 
 set :scm, :git
 
