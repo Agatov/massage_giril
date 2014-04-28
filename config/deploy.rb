@@ -41,9 +41,9 @@ namespace :deploy do
   task :start do
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{env} -D"
   end
-  task :stop do
-    run "if [ -f #{unicorn_pid} ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
-  end
+  #task :stop do
+  #  run "if [ -f #{unicorn_pid} ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
+  #end
 
   task :create_folders do
     run "mkdir #{current_release}/public"

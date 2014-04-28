@@ -3,10 +3,10 @@ $ ->
 
   waitForMap ->
 
-    coordinates = [55.7969, 37.5433]
+    coordinates = [55.763650, 37.574004]
 
     #http://geocode-maps.yandex.ru/1.x/?geocode=OLOLOLO
-    @map = new ymaps.Map($("#map")[0], {center: coordinates, zoom: 15})
+    @map = new ymaps.Map($("#map")[0], {center: coordinates, zoom: 16})
 
     balloonLayout = ymaps.templateLayoutFactory.createClass('$[properties.content]')
     ymaps.layout.storage.add('place#balloonLayout', balloonLayout)

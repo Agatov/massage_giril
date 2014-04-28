@@ -4,6 +4,11 @@ require 'haml'
 require 'sass'
 require 'httparty'
 require 'json'
+require 'pony'
+require 'i18n'
+
+
+I18n.load_path += Dir[File.join(File.dirname(__FILE__), 'config', 'locales', '*.yml').to_s]
 
 class Application < Sinatra::Base
   set :root, File.dirname(__FILE__)
@@ -29,23 +34,23 @@ class Application < Sinatra::Base
 
   post '/orders.json' do
 
-    phones = %w(79688786844)
-
+    
     message = "#{params[:order][:username]}. #{params[:order][:phone]}"
 
-    phones.each do |phone|
-      HTTParty.get(
-          'http://api.sms24x7.ru',
-          query: {
-              method: 'push_msg',
-              email: 'agatovs@gmail.com',
-              password: 'avv6rqE',
-              phone: phone.to_s,
-              text: message,
-              sender_name: 'massagistka'
-          }
-      )
-    end
+    Pony.mail ({
+      to: "admass100@gmail.com, abardacha@gmail.com",
+      subject: 'job.eroviolet.ru',
+      body: message,
+      via: :smtp,
+      via_options: {
+        address: 'smtp.gmail.com',
+        port: 587,
+        enable_starttls_auto: true,
+        user_name: 'agatovs@gmail.com',
+        password: 'f1i4o9l2e4n9t',
+        authentication: :plain
+      }
+    })
 
     content_type :json
     {status: :success}.to_json
